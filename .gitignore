@@ -1,0 +1,133 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+openenv_backup/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Training & Model artifacts
+finetuned_model/
+project/finetuned_model/
+rl/checkpoints/
+results/
+project/results/
+*.pt
+*.pth
+*.ckpt
+*.bin
+
+# Data files (large)
+*.jsonl.backup
+train_broken_backup.jsonl
+*.pkl
+*.pickle
+
+# TensorBoard logs
+runs/
+logs/
+tb_logs/
+lightning_logs/
+
+# Colab artifacts
+.colab_results/
+MetaHackUI_results/
+MetaHackUI_RL_results/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+.cache/
+.pytest_cache/
+
+# Dependencies lock files (optional - comment out if you want to include)
+# poetry.lock
+# Pipfile.lock
+
+# Large files
+*.tar.gz
+*.zip
+*.rar
+
+# API Keys and secrets (if any configs exist)
+config.local.json
+secrets.json
+*.pem
+*.key
+
+# Backup files
+*.backup
+*.bak
+*~
+
+# Compiled documentation
+site/
+docs/_build/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# pytest
+.pytest_cache/
+
+# Coverage
+htmlcov/
+.coverage
+.coverage.*
+
+# pdm
+.pdm.toml
+
+# Prisma
+prisma/.env

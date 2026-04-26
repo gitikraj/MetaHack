@@ -1,0 +1,49 @@
+# Auto normalize line endings for all text files
+* text=auto
+
+# Python files
+*.py text eol=lf
+*.pyx text eol=lf
+*.pxd text eol=lf
+*.pxi text eol=lf
+
+# Shell scripts
+*.sh text eol=lf
+*.bash text eol=lf
+
+# Windows scripts
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# JSON, YAML, TOML
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+
+# Markdown
+*.md text eol=lf
+*.markdown text eol=lf
+
+# Documentation
+*.rst text eol=lf
+*.txt text eol=lf
+
+# Binary files (should not be modified by git)
+*.pkl binary
+*.pickle binary
+*.bin binary
+*.pt binary
+*.pth binary
+*.so binary
+*.exe binary
+*.dll binary
+*.dylib binary
+
+# Jupyter notebooks (treat as text, diff-friendly)
+*.ipynb text diff=jupyter
+
+# Git files
+.gitattributes merge=union
+.gitignore merge=union

